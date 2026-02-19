@@ -1,0 +1,9 @@
+[
+    {
+        "id": "1",
+        "title": "hello world",
+        "date": "feb 2026",
+        "file": "1.md",
+        "summary": "building a minimal static blog system from scratch."
+    }
+]

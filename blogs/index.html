@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blogs · srikar boddupally</title>
+    <link rel="icon" type="image/png" href="../notion_7.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Space Mono Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Space Mono', monospace;
+        }
+
+        ::selection {
+            background: #dafbe1;
+            color: #1a7f37;
+        }
+
+        /* Markdown Styles */
+        .markdown-body h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .markdown-body h2 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .markdown-body h3 {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            margin-top: 1.25rem;
+        }
+
+        .markdown-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            color: #374151;
+        }
+
+        .markdown-body ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .markdown-body pre {
+            background: #f4f4f5;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .markdown-body code {
+            background: #f4f4f5;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .markdown-body pre code {
+            background: transparent;
+            padding: 0;
+        }
+
+        .markdown-body a {
+            color: #15803d;
+            text-decoration: underline;
+        }
+
+        .markdown-body blockquote {
+            border-left: 4px solid #e5e7eb;
+            padding-left: 1rem;
+            color: #9ca3af;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-zinc-900 max-w-3xl mx-auto px-6 py-12 md:py-20 selection:bg-green-100 text-sm md:text-base">
+
+    <header class="flex justify-between items-baseline mb-16">
+        <h1 class="font-bold tracking-tight">
+            <a href="../index.html" class="hover:text-green-700 transition-colors">srikar boddupally</a>
+            <span class="text-zinc-400 mx-2">/</span>
+            <span class="text-zinc-900">blogs</span>
+        </h1>
+    </header>
+
+    <main id="app">
+        <!-- Content injected here -->
+    </main>
+
+    <script>
+        const app = document.getElementById('app');
+
+        async function loadRegistry() {
+            try {
+                const res = await fetch('posts.json');
+                return await res.json();
+            } catch (e) {
+                console.error("Failed to load posts registry", e);
+                return [];
+            }
+        }
+
+        async function renderList() {
+            const posts = await loadRegistry();
+            const listHtml = posts.map(post => `
+                <article class="mb-10 group">
+                    <div class="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
+                        <h2 class="text-lg font-bold">
+                            <a href="#${post.id}" class="hover:text-green-700 transition-colors">${post.title}</a>
+                        </h2>
+                        <span class="text-xs text-zinc-400 font-mono">${post.date}</span>
+                    </div>
+                    <p class="text-zinc-500 leading-relaxed text-sm">${post.summary}</p>
+                </article>
+            `).join('');
+
+            app.innerHTML = `<div class="space-y-4">${listHtml}</div>`;
+            document.title = "blogs · srikar boddupally";
+        }
+
+        async function renderPost(id) {
+            const posts = await loadRegistry();
+            const post = posts.find(p => p.id === id);
+
+            if (!post) {
+                app.innerHTML = `<div class="text-red-500">post not found. <a href="#" class="underline">go back</a></div>`;
+                return;
+            }
+
+            try {
+                const res = await fetch(`posts/${post.file}`);
+                if (!res.ok) throw new Error("Post file not found");
+                const text = await res.text();
+                const content = marked.parse(text);
+
+                app.innerHTML = `
+                    <div class="mb-8">
+                        <a href="#" class="text-xs text-zinc-400 hover:text-green-700 transition-colors">← back to all posts</a>
+                    </div>
+                    <article>
+                        <header class="mb-10 pb-8 border-b border-zinc-100">
+                            <h1 class="text-2xl md:text-3xl font-bold mb-3">${post.title}</h1>
+                            <time class="text-xs text-zinc-400 font-mono">${post.date}</time>
+                        </header>
+                        <div class="markdown-body">
+                            ${content}
+                        </div>
+                    </article>
+                `;
+                document.title = `${post.title} · srikar boddupally`;
+            } catch (e) {
+                app.innerHTML = `<div class="text-red-500">error loading post content.</div>`;
+            }
+        }
+
+        async function router() {
+            const hash = window.location.hash.slice(1);
+            if (hash) {
+                await renderPost(hash);
+            } else {
+                await renderList();
+            }
+        }
+
+        window.addEventListener('hashchange', router);
+        window.addEventListener('load', router);
+    </script>
+</body>
+
+</html>
