@@ -103,24 +103,42 @@
     </header>
 
     <main id="app">
-        <!-- Content injected here -->
+        <div class="text-zinc-400 animate-pulse">loading registry...</div>
     </main>
 
     <script>
         const app = document.getElementById('app');
 
+        // Debug helper
+        function logError(msg, err) {
+            console.error(msg, err);
+            const errDiv = document.createElement('div');
+            errDiv.className = "text-red-500 text-xs font-mono mt-4 border-t border-red-100 pt-2";
+            errDiv.innerText = `DEBUG: ${msg} \n${err ? err.message : ''}`;
+            app.appendChild(errDiv);
+        }
+
         async function loadRegistry() {
             try {
-                const res = await fetch('posts.json');
-                return await res.json();
+                console.log("Fetching posts.json...");
+                const res = await fetch('./posts.json');
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                console.log("Registry loaded:", data);
+                return data;
             } catch (e) {
-                console.error("Failed to load posts registry", e);
+                logError("Failed to load posts registry", e);
                 return [];
             }
         }
 
         async function renderList() {
             const posts = await loadRegistry();
+            if (posts.length === 0) {
+                app.innerHTML = `<div class="text-zinc-500">no posts found (or failed to load).</div>`;
+                return;
+            }
+
             const listHtml = posts.map(post => `
                 <article class="mb-10 group">
                     <div class="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
@@ -142,14 +160,20 @@
             const post = posts.find(p => p.id === id);
 
             if (!post) {
-                app.innerHTML = `<div class="text-red-500">post not found. <a href="#" class="underline">go back</a></div>`;
+                app.innerHTML = `<div class="text-red-500">post ${id} not found in registry. <a href="#" class="underline">go back</a></div>`;
                 return;
             }
 
             try {
+                console.log(`Fetching post content: posts/${post.file}`);
                 const res = await fetch(`posts/${post.file}`);
-                if (!res.ok) throw new Error("Post file not found");
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const text = await res.text();
+
+                if (typeof marked === 'undefined') {
+                    throw new Error("marked.js library not loaded");
+                }
+
                 const content = marked.parse(text);
 
                 app.innerHTML = `
@@ -169,6 +193,7 @@
                 document.title = `${post.title} · srikar boddupally`;
             } catch (e) {
                 app.innerHTML = `<div class="text-red-500">error loading post content.</div>`;
+                logError("Content fetch failed", e);
             }
         }
 
