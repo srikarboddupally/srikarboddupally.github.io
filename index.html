@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>srikar boddupally</title>
+    <link rel="icon" type="image/png" href="notion_7.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Space Mono Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Space Mono font */
+        body {
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Custom selection color - GitHub green-ish */
+        ::selection {
+            background: #dafbe1;
+            color: #1a7f37;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-marquee {
+            animation: marquee 20s linear infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-zinc-900 max-w-5xl mx-auto px-6 py-12 md:py-20 selection:bg-green-100 text-base md:text-lg">
+
+    <header class="flex justify-between items-baseline mb-16">
+        <h1 class="text-2xl font-bold tracking-tight">srikar boddupally</h1>
+        <!-- Navigation removed as requested -->
+    </header>
+
+    <main class="grid grid-cols-1 md:grid-cols-12 gap-12">
+
+        <div class="md:col-span-8 space-y-16">
+
+            <section>
+                <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-4">
+                    ml engineer & researcher <br>
+                    <span class="text-green-700">ai safety</span> · backend · computer vision
+                </h2>
+
+                <!-- Scrolling Binary Banner (srikar in binary) -->
+                <div class="w-full overflow-hidden mb-8 select-none relative mask-gradient">
+                    <div class="whitespace-nowrap animate-marquee text-[10px] text-zinc-400 font-mono tracking-widest">
+                        01110011 01110010 01101001 01101011 01100001 01110010 &nbsp;&nbsp; 01110011 01110010 01101001
+                        01101011 01100001 01110010 &nbsp;&nbsp; 01110011 01110010 01101001 01101011 01100001 01110010
+                        &nbsp;&nbsp; 01110011 01110010 01101001 01101011 01100001 01110010 &nbsp;&nbsp;
+                        01110011 01110010 01101001 01101011 01100001 01110010 &nbsp;&nbsp; 01110011 01110010 01101001
+                        01101011 01100001 01110010 &nbsp;&nbsp; 01110011 01110010 01101001 01101011 01100001 01110010
+                        &nbsp;&nbsp; 01110011 01110010 01101001 01101011 01100001 01110010
+                    </div>
+                </div>
+
+                <div class="prose prose-zinc max-w-none text-sm leading-relaxed text-zinc-700">
+                    <p class="mb-4">
+                        i'm an engineering student at <span class="font-semibold text-zinc-900">kl university</span>,
+                        building systems where ai meets robust software engineering. i am deeply interested in <span
+                            class="text-zinc-900">ai alignment</span> and safety, aiming to build reliable agents that
+                        act in accordance with human intent.
+                    </p>
+                    <p>
+                        currently, i prefer a "build to learn" methodology. i don't just study theory; i deploy it.
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h3
+                    class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-6 border-b border-zinc-200 pb-2">
+                    history</h3>
+
+                <div class="space-y-8">
+                    <div class="group">
+                        <div class="flex justify-between items-baseline mb-1">
+                            <h4 class="font-bold group-hover:text-green-700 transition-colors">research assistant</h4>
+                            <span class="text-xs text-zinc-500">jan 2025 — present</span>
+                        </div>
+                        <div class="text-sm text-zinc-600 mb-2">KL university · vijayawada</div>
+                        <p class="text-sm leading-relaxed text-zinc-700">
+                            leading a 6-member team building cnn architectures for landslide detection. we processed
+                            10k+ satellite images, achieving <span class="text-zinc-900 font-medium">92%
+                                precision</span> and reducing inference latency by 30% via batch preprocessing.
+                        </p>
+                    </div>
+
+                    <div class="group">
+                        <div class="flex justify-between items-baseline mb-1">
+                            <h4 class="font-bold group-hover:text-green-700 transition-colors">data scientist intern
+                            </h4>
+                            <span class="text-xs text-zinc-500">jun 2025 — aug 2025</span>
+                        </div>
+                        <div class="text-sm text-zinc-600 mb-2">Celebal technologies · Noida</div>
+                        <p class="text-sm leading-relaxed text-zinc-700">
+                            built production ml apis using fastapi. achieved sub-200ms p95 latency under load and
+                            improved f1-scores by engineering composite features for a large-scale spambase dataset.
+                        </p>
+                    </div>
+
+                    <div class="group">
+                        <div class="flex justify-between items-baseline mb-1">
+                            <h4 class="font-bold group-hover:text-green-700 transition-colors">research intern</h4>
+                            <span class="text-xs text-zinc-500">may 2024 — jul 2024</span>
+                        </div>
+                        <div class="text-sm text-zinc-600 mb-2">DRDO · Hyderabad</div>
+                        <p class="text-sm leading-relaxed text-zinc-700">
+                            optimized gnss signal algorithms. replaced o(n²) search with fft-based detection, improving
+                            estimation accuracy to 92%.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <h3
+                    class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-6 border-b border-zinc-200 pb-2">
+                    selected works</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                    <div class="border border-zinc-200 p-5 hover:border-green-600 transition-colors rounded-sm">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="font-bold">analyzejd.ai</h4>
+                            <div class="flex space-x-3 text-[10px] uppercase font-bold text-zinc-400">
+                                <a href="https://analyzejd-fe.vercel.app"
+                                    class="hover:text-green-700 transition-colors">live</a>
+                                <a href="https://github.com/srikarboddupally/analyzejd.ai"
+                                    class="hover:text-green-700 transition-colors">github</a>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span
+                                class="bg-green-50 text-green-800 text-[10px] px-2 py-1 rounded-full">gemini-2.0</span>
+                            <span class="bg-zinc-100 text-zinc-700 text-[10px] px-2 py-1 rounded-full">fastapi</span>
+                            <span class="bg-zinc-100 text-zinc-700 text-[10px] px-2 py-1 rounded-full">saas</span>
+                        </div>
+                        <p class="text-xs text-zinc-600 leading-relaxed">
+                            an llm-powered tool for parsing tech job descriptions with 90%+ accuracy. architected a
+                            two-pass inference system to cut api costs by 60%.
+                        </p>
+                    </div>
+
+                    <div class="border border-zinc-200 p-5 hover:border-green-600 transition-colors rounded-sm">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="font-bold">centralperkAI</h4>
+                            <div class="flex space-x-3 text-[10px] uppercase font-bold text-zinc-400">
+                                <a href="https://github.com/srikarboddupally/centralperkGPT"
+                                    class="hover:text-green-700 transition-colors">github</a>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="bg-green-50 text-green-800 text-[10px] px-2 py-1 rounded-full">pytorch</span>
+                            <span
+                                class="bg-zinc-100 text-zinc-700 text-[10px] px-2 py-1 rounded-full">transformer</span>
+                            <span
+                                class="bg-zinc-100 text-zinc-700 text-[10px] px-2 py-1 rounded-full">fun-project</span>
+                        </div>
+                        <p class="text-xs text-zinc-600 leading-relaxed">
+                            gpt-style decoder transformer implemented from scratch. trained on friends tv show scripts
+                            to
+                            generate character-specific dialogue.
+                        </p>
+                    </div>
+
+                    <div class="border border-zinc-200 p-5 hover:border-green-600 transition-colors rounded-sm">
+                        <h4 class="font-bold mb-2">landslide-sense</h4>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="bg-green-50 text-green-800 text-[10px] px-2 py-1 rounded-full">pytorch</span>
+                            <span class="bg-zinc-100 text-zinc-700 text-[10px] px-2 py-1 rounded-full">research</span>
+                            <span class="bg-zinc-100 text-zinc-700 text-[10px] px-2 py-1 rounded-full">u-net</span>
+                        </div>
+                        <p class="text-xs text-zinc-600 leading-relaxed">
+                            deep learning model using u-net to detect landslides from remote sensing data. optimized for
+                            inference speed on edge devices.
+                        </p>
+                    </div>
+
+                    <div class="border border-zinc-200 p-5 hover:border-green-600 transition-colors rounded-sm">
+                        <h4 class="font-bold mb-2">spendwise</h4>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="bg-zinc-100 text-zinc-700 text-[10px] px-2 py-1 rounded-full">react</span>
+                            <span class="bg-zinc-100 text-zinc-700 text-[10px] px-2 py-1 rounded-full">postgresql</span>
+                        </div>
+                        <p class="text-xs text-zinc-600 leading-relaxed">
+                            personal finance system handling concurrent transactions with optimistic locking. reduced
+                            query latency by 75% via compound indexing.
+                        </p>
+                    </div>
+
+                    <div class="border border-zinc-200 p-5 hover:border-green-600 transition-colors rounded-sm">
+                        <h4 class="font-bold mb-2">research-agent</h4>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="bg-zinc-100 text-zinc-700 text-[10px] px-2 py-1 rounded-full">modal</span>
+                            <span
+                                class="bg-zinc-100 text-zinc-700 text-[10px] px-2 py-1 rounded-full">semantic-scholar</span>
+                        </div>
+                        <p class="text-xs text-zinc-600 leading-relaxed">
+                            autonomous agent for automating literature reviews. built on modal and fastapi to
+                            asynchronously scrape and synthesize papers.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            <section>
+                <h3
+                    class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-6 border-b border-zinc-200 pb-2">
+                    my interests</h3>
+                <p class="text-sm leading-relaxed text-zinc-700">
+                    when i'm not optimizing gradients, i'm likely playing <span class="text-zinc-900">fifa</span> (Man
+                    United!!!! Lesgooo), reading through the <span class="text-zinc-900">marvel</span> chronology. i am
+                    also researching on AI infra and alignment for model training and fine tuning.
+                </p>
+            </section>
+
+        </div>
+
+        <aside class="md:col-span-4 md:pl-8 md:border-l md:border-zinc-200">
+
+            <div class="mb-10">
+                <div
+                    class="w-32 h-32 rounded-full bg-zinc-200 overflow-hidden mb-4 grayscale hover:grayscale-0 transition-all duration-500">
+                    <img src="notion_7.png" alt="Srikar" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <div class="mb-12">
+                <h3 class="font-bold text-sm mb-4">news</h3>
+                <ul class="space-y-6 text-xs leading-relaxed text-zinc-500">
+                    <li>
+                        <span class="block text-green-700 font-mono mb-1">feb 2026</span>
+                        building "analyzejd.ai" to solve tech hiring friction using gemini 2.0.
+                    </li>
+                    <li>
+                        <span class="block text-green-700 font-mono mb-1">jan 2026</span>
+                        began final semester at kl university.
+                    </li>
+                    <li>
+                        <span class="block text-green-700 font-mono mb-1">jan 2025</span>
+                        started as a research assistant at klu, focusing on computer vision for disaster management.
+                    </li>
+                    <li>
+                        <span class="block text-green-700 font-mono mb-1">dec 2025</span>
+                        cleared technical assessments for infosys and cognizant.
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-sm mb-4">links</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="https://github.com/srikarboddupally"
+                            class="hover:text-green-700 hover:underline">github</a> <span class="text-zinc-400">↗</span>
+                    </li>
+                    <li><a href="https://www.linkedin.com/in/srikar-boddupally/"
+                            class="hover:text-green-700 hover:underline">linkedin</a> <span
+                            class="text-zinc-400">↗</span></li>
+                    <li><a href="#" class="hover:text-green-700 hover:underline">twitter / x</a> <span
+                            class="text-zinc-400">↗</span></li>
+                    <li><a href="#" class="hover:text-green-700 hover:underline">scholar</a> <span
+                            class="text-zinc-400">↗</span></li>
+                </ul>
+            </div>
+
+        </aside>
+
+    </main>
+
+    <footer class="mt-20 pt-8 border-t border-zinc-200 text-xs text-zinc-500 flex justify-between">
+        <div>&copy; 2026 srikar boddupally</div>
+        <div>built to learn</div>
+    </footer>
+
+</body>
+
+</html>
