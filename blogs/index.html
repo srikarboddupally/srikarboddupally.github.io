@@ -170,11 +170,15 @@
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const text = await res.text();
 
+                // Strip the YAML metadata block from the top of the markdown file
+                const cleanText = text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
+
                 if (typeof marked === 'undefined') {
                     throw new Error("marked.js library not loaded");
                 }
 
-                const content = marked.parse(text);
+                // Parse the cleaned text (Only declared once!)
+                const content = marked.parse(cleanText);
 
                 app.innerHTML = `
                     <div class="mb-8">

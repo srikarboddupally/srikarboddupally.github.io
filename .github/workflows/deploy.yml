@@ -1,19 +1,15 @@
-name: Deploy Static Portfolio to Pages
+name: Deploy Static Blog
 
 on:
-  # Trigger the deployment every time you push to the main branch
   push:
     branches: ["main"]
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -27,14 +23,25 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        
+        with:
+          fetch-depth: 0 # <-- NEW: We need full history so Git knows when you wrote the blog
+
+      # --- NEW PYTHON STEPS START HERE ---
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Auto-generate posts.json
+        run: python generate_registry.py
+      # --- NEW PYTHON STEPS END HERE ---
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
         
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
           path: '.'
           
       - name: Deploy to GitHub Pages

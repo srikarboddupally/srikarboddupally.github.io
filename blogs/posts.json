@@ -1,4 +1,10 @@
-[
+[   {
+        "id": "2",
+        "title": "building centralperkGPT: a transformer from scratch",
+        "date": "feb 2026",
+        "file": "2.md",
+        "summary": "implementing a lightweight gpt-style model in pure pytorch to understand autoregressive training dynamics."
+    },
     {
         "id": "1",
         "title": "hello world",
@@ -6,4 +12,5 @@
         "file": "1.md",
         "summary": "building a minimal static blog system from scratch."
     }
+
 ]
